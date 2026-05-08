@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand: teal-emerald hue 175 ── */
+  --color-brand: oklch(65% 0.18 175);
+  --color-brand-light: oklch(78% 0.12 175);
+  --color-brand-dim: oklch(45% 0.14 175);
+  --color-brand-subtle: oklch(30% 0.06 175);
+
+  /* ── Secondary: warm amber hue 70 ── */
+  --color-accent-warm: oklch(75% 0.16 70);
+  --color-accent-warm-dim: oklch(55% 0.12 70);
+
+  /* ── Semantic ── */
+  --color-success: oklch(72% 0.15 145);
+  --color-warning: oklch(78% 0.14 70);
+  --color-info: oklch(68% 0.12 230);
+
+  /* ── Neutrals: tinted toward hue 175, chroma 0.008 ── */
+  --color-background: oklch(10% 0.008 175);
+  --color-surface: oklch(14% 0.008 175);
+  --color-surface-raised: oklch(18% 0.008 175);
+  --color-surface-overlay: oklch(22% 0.008 175);
+  --color-border: oklch(22% 0.01 175);
+  --color-border-subtle: oklch(18% 0.008 175);
+  --color-border-focus: oklch(55% 0.12 175);
+
+  /* ── Text: tinted toward brand ── */
+  --color-text-primary: oklch(96% 0.005 175);
+  --color-text-secondary: oklch(78% 0.01 175);
+  --color-text-muted: oklch(58% 0.015 175);
+
+  /* ── Typography ── */
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Source Sans Pro", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+
+  /* ── Spacing: 4pt base ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* ── Motion ── */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 350ms;
+  --duration-slow: 500ms;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography rendering ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  line-height: 1.15;
+}
+
+article p, .prose p {
+  text-wrap: pretty;
+}
+
+/* ── Vertical rhythm: body line-height = 24px ── */
+p + p {
+  margin-top: var(--space-6);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(28% 0.01 175);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(38% 0.015 175);
+}
+
+/* ── Grid background (brand-tinted) ── */
+.bg-grid {
+  background-image:
+    linear-gradient(oklch(30% 0.02 175 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(30% 0.02 175 / 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Ambient glow (replaces glow-blob scatter) ── */
+.ambient-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.12;
+  pointer-events: none;
+  background: var(--color-brand);
+}
+
+/* ── Surface card (replaces glass-card) ── */
+.surface-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: border-color var(--duration-fast) var(--ease-out-quart),
+              transform var(--duration-fast) var(--ease-out-quart);
+}
+.surface-card:hover {
+  border-color: var(--color-border-focus);
+}
+
+/* ── Surface raised (higher elevation = lighter in dark mode) ── */
+.surface-raised {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: oklch(65% 0.18 175 / 0.3);
+  color: var(--color-text-primary);
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── ALL-CAPS tracking ── */
+.caps-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
