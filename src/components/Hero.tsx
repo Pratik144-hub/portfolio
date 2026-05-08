@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { profile } from "@/data/profile";
 
 export default function Hero() {
@@ -136,6 +136,31 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
               >
                 Contact Me
+              </a>
+              {/* Resume Download */}
+              <a
+                href="/resume.pdf"
+                download="Pratik_Bargal_Resume.pdf"
+                className="group inline-flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-semibold transition-all"
+                style={{
+                  borderColor: "oklch(65% 0.18 175 / 0.3)",
+                  color: "var(--color-brand-light)",
+                  background: "oklch(65% 0.18 175 / 0.06)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "oklch(65% 0.18 175 / 0.12)";
+                  e.currentTarget.style.borderColor = "var(--color-brand-dim)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "oklch(65% 0.18 175 / 0.06)";
+                  e.currentTarget.style.borderColor = "oklch(65% 0.18 175 / 0.3)";
+                }}
+              >
+                <Download
+                  size={15}
+                  className="transition-transform group-hover:translate-y-0.5"
+                />
+                Resume
               </a>
             </motion.div>
           </div>
