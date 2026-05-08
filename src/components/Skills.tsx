@@ -25,8 +25,8 @@ const lucideIconMap: Record<string, React.ReactNode> = {
 
 function TechIcon({ iconKey }: { iconKey?: string }) {
   if (!iconKey) return null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const IconComponent = (Si as any)[iconKey];
+  const SiIcons = Si as Record<string, React.ComponentType<{ size?: number }>>;
+  const IconComponent = SiIcons[iconKey];
   if (!IconComponent) return null;
   return <IconComponent size={14} />;
 }
